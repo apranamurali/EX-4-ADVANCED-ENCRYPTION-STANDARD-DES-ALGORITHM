@@ -11,63 +11,45 @@
 
 ## PROGRAM: 
 ```
+Name: APARNA M
+Register Number: 212223220008
+```
+
+```C
 #include <stdio.h>
 #include <string.h>
 
-void simpleAESEncrypt(char *plaintext, char *key, char *ciphertext)
-{
-    int i;
-    for (i = 0; i < strlen(plaintext); i++) 
-    {
-        ciphertext[i] = plaintext[i] ^ key[i % strlen(key)]; 
-    }
-    ciphertext[i] = '\0'; 
+
+  void xor_encrypt_decrypt(char *input, char *key) {
+int input_len = strlen(input);
+int key_len = strlen(key);
+
+for (int i = 0; i < input_len; i++) {
+    input[i] = input[i] ^ key[i % key_len]; // XOR encryption
+}
 }
 
-void simpleAESDecrypt(char *ciphertext, char *key, char *decryptedText)
-{
-    int i;
-    for (i = 0; i < strlen(ciphertext); i++) 
-    {
-        decryptedText[i] = ciphertext[i] ^ key[i % strlen(key)]; 
-    }
-    decryptedText[i] = '\0'; 
-}
+int main() {
+char url[] = "https://lms2.cse.saveetha.in";
+char key[] = "secretkey"; // Simple key for XOR encryption
 
-void printASCII(char *ciphertext) 
-{
-    printf("Encrypted Message (ASCII values): ");
-    for (int i = 0; i < strlen(ciphertext); i++) 
-    {
-        printf("%d ", (unsigned char)ciphertext[i]); 
-    }
-    printf("\n");
-}
+printf("Original URL: %s\n", url);
 
-int main() 
-{
-    char plaintext[100], key[100], ciphertext[100], decryptedText[100];
+// Encrypt the URL
+xor_encrypt_decrypt(url, key);
+printf("Encrypted URL: %s\n", url);
 
-    printf("Enter the plaintext: ");
-    scanf("%s", plaintext);
+// Decrypt the URL (since XOR is reversible using the same key)
+xor_encrypt_decrypt(url, key);
+printf("Decrypted URL: %s\n", url);
 
-    printf("Enter the key: ");
-    scanf("%s", key);
-
-    simpleAESEncrypt(plaintext, key, ciphertext);
-    printASCII(ciphertext);  
-
-    simpleAESDecrypt(ciphertext, key, decryptedText);
-    printf("Decrypted Message: %s\n", decryptedText);
-
-    return 0;
+return 0;
 }
 ```
 ## OUTPUT:
-![image](https://github.com/user-attachments/assets/6adfe21f-68e6-4a4f-8b0d-58a17c42fd81)
+![Screenshot 2024-09-30 115354](https://github.com/user-attachments/assets/2d48d63c-1684-4b28-83b3-ebeb7b4108a6)
 
 
 ## RESULT: 
+
 Hence,to use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption is done successfully.
-
-
